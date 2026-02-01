@@ -12,10 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9693cd654b711884e82053f33dee3bf0, type: 3}
   m_Name: Prince
   m_EditorClassIdentifier: Assembly-CSharp::MasqueradeGame.RoleData
+  sprite: {fileID: 21300000, guid: 2da96254b31f7ef4e90baab11add923f, type: 3}
   roleType: 5
   influenceValue: 5
   roleName: Prince
-  description: 
+  description: I try to be around as many people as possible
   hasFixedStartingMask: 0
   fixedMaskType: 0
   hasCustomMovement: 1
