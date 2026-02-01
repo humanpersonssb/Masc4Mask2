@@ -203,7 +203,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::MasqueradeGame.UI.CharacterCardRenderer
   _maskField: {fileID: 8100380170079455151}
   _button: {fileID: 9085171321171111434}
-  _iAmSelected: {fileID: 7313773249888588958}
+  _iAmSelected: {fileID: 2581216056773536978}
 --- !u!114 &9085171321171111434
 MonoBehaviour:
   m_ObjectHideFlags: 0

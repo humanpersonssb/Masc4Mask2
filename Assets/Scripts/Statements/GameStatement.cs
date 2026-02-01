@@ -89,7 +89,7 @@ namespace MasqueradeGame
             }
 
             RolesUsed.Add(speaker.trueRole.roleType);
-            return new GameStatement($"If you must know. I'd say I have an influence between {min} and {max} inclusively.");
+            return new GameStatement($"If you must know. I'd say I have an influence between {min} and {max} (inclusive).");
         }
 
         private bool IsInRange(int num, int min, int max)
