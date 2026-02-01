@@ -3,6 +3,7 @@ using UnityEngine;
 using System.Linq;
 using System;
 using MasqueradeGame.UI;
+using MasqueradeGame.VFX;
 
 namespace MasqueradeGame
 {
@@ -48,6 +49,7 @@ namespace MasqueradeGame
 
         private bool isGameActive = false;
         private Character selectedCharacter;
+        public ScreenFaderVFX ScreenFader;
 
         public event Action<int> OnRoundChanged;
         public event Action<Character> OnCharacterSelected;
@@ -210,22 +212,22 @@ namespace MasqueradeGame
 
         public void AdvanceTurn()
         {
-            if (!isGameActive)
-                return;
-
-            currentRound++;
-            OnRoundChanged?.Invoke(currentRound);
-
-            MoveAllCharacters();
-            
-            if (currentRound % 3 == 0)
+            ScreenFader.DoFade(() =>
             {
-                ForceGuess();
-                //EventPhase();
-            }
+                currentRound++;
+                OnRoundChanged?.Invoke(currentRound);
+
+                MoveAllCharacters();
+            
+                if (currentRound % 3 == 0)
+                {
+                    ForceGuess();
+                    //EventPhase();
+                }
         
-            //// hii olin
-            Debug.Log($"Turn {currentRound}/{maxRounds} - Characters moved");
+                //// hii olin
+                Debug.Log($"Turn {currentRound}/{maxRounds} - Characters moved");
+            });
         }
 
         private void ForceGuess()
@@ -329,9 +331,11 @@ namespace MasqueradeGame
             OnGameEnded?.Invoke(won);
         }
 
+        public RectTransform LoseGraphicsRoot;
         public void Lose()
         {
-            EndGame(); // TODO
+            EndGame();
+            LoseGraphicsRoot.gameObject.SetActive(true);
         }
 
         private void EndGame()

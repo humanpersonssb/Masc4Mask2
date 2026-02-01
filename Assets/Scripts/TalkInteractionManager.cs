@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using MasqueradeGame.UI;
+using MasqueradeGame.VFX;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -32,6 +33,8 @@ namespace MasqueradeGame
         [Header("State")]
         public Character ActiveCharacter;
         public List<string> Log;
+
+        public ScreenFaderVFX Fader;
 
         private void Awake()
         {
@@ -157,17 +160,20 @@ namespace MasqueradeGame
             ContinueButton.onClick.AddListener(HandleClickContinueFromGuess);
             DepopulateOptions();
             (button.Generator as SG_GuessMyRole)!.CachedGuess = button.AssociatedRole;
-            GameStatement statement = button.Generate(GameManager, ActiveCharacter);
-            if (statement.Success)
+            Fader.DoFade((() =>
             {
-                ActiveCharacter.SetMask(MaskType.None);
-            }
-            else
-            {
-                GameManager.Lose();
-            }
-            SpeakerText.text = statement.Statement;
-            Log.Add(statement.ToString());
+                GameStatement statement = button.Generate(GameManager, ActiveCharacter);
+                if (statement.Success)
+                {
+                    ActiveCharacter.SetMask(MaskType.None);
+                }
+                else
+                {
+                    GameManager.Lose();
+                }
+                SpeakerText.text = statement.Statement;
+                Log.Add(statement.ToString());
+            }));
         }
 
         private void HandleClickContinue()
