@@ -122,7 +122,7 @@ namespace MasqueradeGame
             foreach (RoleData role in allRoles)
             {
                 var optionInstance = Instantiate(OptionPrefab, GuessesRoot.transform);
-                optionInstance.Init($"{role.ToString()}", StatementGeneratorManager.DirectGuess, role.roleType);
+                optionInstance.Init($"{role.roleType.ToString()}", StatementGeneratorManager.DirectGuess, role.roleType);
                 optionInstance.Button.onClick.AddListener(() => HandleClickGuess(optionInstance));
             }
         }
@@ -130,6 +130,10 @@ namespace MasqueradeGame
         public void DepopulateOptions()
         {
             foreach (Transform existing in OptionsRoot.transform)
+            {
+                Destroy(existing.gameObject);
+            }
+            foreach (Transform existing in GuessesRoot.transform)
             {
                 Destroy(existing.gameObject);
             }

@@ -13,12 +13,25 @@ namespace MasqueradeGame.UI
 
         private Character _activeCharacter;
 
+        private void OnEnable()
+        {
+            _button.onClick.AddListener(HandleClick);
+        }
+
+        private void OnDisable()
+        {
+            _button.onClick.RemoveListener(HandleClick);
+        }
+
         public void Init(Character character)
         {
             _activeCharacter = character;
             _maskField.sprite = character.maskIcon;
-            _button.onClick.RemoveAllListeners();
-            _button.onClick.AddListener(() => OnClick?.Invoke(character));
+        }
+
+        private void HandleClick()
+        {
+            OnClick?.Invoke(_activeCharacter);
         }
     }
 }
