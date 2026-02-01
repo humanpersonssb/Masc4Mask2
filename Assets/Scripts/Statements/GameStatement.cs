@@ -8,6 +8,7 @@ namespace MasqueradeGame
 {
     public class GameStatement
     {
+        public bool Success => ReputationChange > 0;
         public int ReputationChange;
         public string Statement;
 
@@ -579,7 +580,7 @@ namespace MasqueradeGame
             Role myRole = speaker.trueRole.roleType;
             Debug.Log($"Is true: {isTrue} :: myRole: {myRole} :: CachedGuess: {CachedGuess}");
         
-            if(isTrue == (myRole == CachedGuess))
+            if((myRole == CachedGuess))
             {
                 return new($"Well guessed! I am indeed the {CachedGuess}", 1);
             }
@@ -693,7 +694,7 @@ namespace MasqueradeGame
         public override GameStatement GenerateStatement(GameManager game, Character speaker, bool isTrue)
         {
             int myRank = speaker.TrueInfluence;
-            List<Character> twoOthers = game.AllUnmaskedCharacters.OrderBy(_ => Guid.NewGuid()).Take(2).ToList();
+            List<Character> twoOthers = game.AllMaskedCharacters.OrderBy(_ => Guid.NewGuid()).Take(2).ToList();
             int sumRank = twoOthers.Sum(x => x.TrueInfluence);
             int total = sumRank + myRank;
             if (!isTrue)

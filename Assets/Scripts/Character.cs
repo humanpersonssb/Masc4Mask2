@@ -97,6 +97,15 @@ namespace MasqueradeGame
             }
         }
 
+        public Sprite GetCharacterSprite()
+        {
+            if (currentMask == MaskType.None)
+            {
+                return trueRole.sprite;
+            }
+            return maskIcon;
+        }
+
         public void OnClicked()
         {
             Debug.Log($"Character button clicked: {characterName}, Can Interact: {canBeInteractedWith}");
@@ -155,6 +164,11 @@ public void Initialize(RoleData role, MaskVisuals maskVisuals, Room startingRoom
                     }
                 }
             }
+        }
+
+        public void SetMask(MaskType mask)
+        {
+            currentMask = mask;
         }
 
         public void SwapMasks(Character other)

@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 using System;
+using MasqueradeGame.UI;
 
 namespace MasqueradeGame
 {
@@ -50,7 +51,10 @@ namespace MasqueradeGame
 
         public event Action<int> OnRoundChanged;
         public event Action<Character> OnCharacterSelected;
+        public event Action<Character> OnCharacterSelectedForGuessing;
         public event Action<bool> OnGameEnded;
+
+        public CharactersPanelUI CharactersPanel;
 
 
         public readonly HashSet<Role> AllRoles = new()
@@ -213,23 +217,24 @@ namespace MasqueradeGame
             OnRoundChanged?.Invoke(currentRound);
 
             MoveAllCharacters();
-
-            if (currentRound >= maxRounds)
+            
+            if (currentRound % 3 == 0)
             {
-                EndGame();
+                ForceGuess();
+                //EventPhase();
             }
-            if(currentDifficulty == Difficulty.Hard)
-            {
-                if(currentRound %3 == 0)EventPhase();
-            } else if(currentDifficulty == Difficulty.Medium)
-            {
-                if(currentRound == 6) EventPhase();
-            }
+        
             //// hii olin
             Debug.Log($"Turn {currentRound}/{maxRounds} - Characters moved");
         }
 
-        private void EventPhase()
+        private void ForceGuess()
+        {
+            var maskedCharacters = AllMaskedCharacters;
+            CharactersPanel.Open(maskedCharacters, c => OnCharacterSelectedForGuessing?.Invoke(c));
+        }
+
+        public void EventPhase()
         {
             List<Room> allRooms = new List<Room> { ballroom, bathroom, balcony, study, wineCellar, courtyard };
             List<Room> roomsWithMultipleCharacters = allRooms.Where(r => r.OccupantCount >= 2).ToList();
@@ -324,6 +329,11 @@ namespace MasqueradeGame
             OnGameEnded?.Invoke(won);
         }
 
+        public void Lose()
+        {
+            EndGame(); // TODO
+        }
+
         private void EndGame()
         {
             isGameActive = false;
@@ -411,6 +421,8 @@ namespace MasqueradeGame
         public int MaxRounds => maxRounds;
         public List<Character> AllCharacters => charactersInPlay;
         
-        public List<Character> AllUnmaskedCharacters => AllCharacters.Where(x => x.currentMask != MaskType.None).ToList();
+        public List<Character> AllMaskedCharacters => AllCharacters.Where(x => x.currentMask != MaskType.None).ToList();
+        public List<Character> AllCharactersWithoutMask => AllCharacters.Where(x => x.currentMask == MaskType.None).ToList();
+        public int Score => AllCharactersWithoutMask.Count();
     }
 }

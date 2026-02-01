@@ -9,11 +9,13 @@ namespace MasqueradeGame.UI
         public Button Button;
         public TextMeshProUGUI InstructionTextField;
         public StatementGenerator Generator;
+        public Role AssociatedRole;
 
-        public void Init(string instruction, StatementGenerator generator)
+        public void Init(string instruction, StatementGenerator generator, Role associatedRole = default)
         {
             InstructionTextField.text = instruction;
             Generator = generator;
+            AssociatedRole = associatedRole;
         }
 
         public GameStatement Generate(GameManager game, Character speaker)

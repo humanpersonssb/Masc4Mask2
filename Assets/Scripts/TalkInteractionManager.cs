@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using MasqueradeGame.UI;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 using Random = UnityEngine.Random;
 
@@ -13,11 +15,12 @@ namespace MasqueradeGame
     {
         [Header("UI Elements")]
         public RectTransform GraphicsRoot;
-        public Image SilhouetteImage;
+        [FormerlySerializedAs("SilhouetteImage")] public Image FullBodyImage;
         public TextMeshProUGUI SpeakerText;
         public Button ContinueButton;
         public GameStatementGeneratorManager StatementGeneratorManager;
         public VerticalLayoutGroup OptionsRoot;
+        public GridLayoutGroup GuessesRoot;
 
         [Header("Config")]
         public GameManager GameManager;
@@ -54,17 +57,28 @@ namespace MasqueradeGame
             ActiveCharacter = character;
             GraphicsRoot.gameObject.SetActive(true);
             ContinueButton.gameObject.SetActive(false);
+            OptionsRoot.gameObject.SetActive(true);
+            GuessesRoot.gameObject.SetActive(false);
             PopulateOptions();
             SpeakerText.text = IntroductionTexts[Random.Range(0, IntroductionTexts.Count)];
-            if (ActiveCharacter.currentMask == MaskType.None)
-            {
-                SilhouetteImage.gameObject.SetActive(false);
-            }
-            else
-            {
-                SilhouetteImage.gameObject.SetActive(true);
-                SilhouetteImage.sprite = ActiveCharacter.silhouetteSprite;
-            }
+            FullBodyImage.sprite = ActiveCharacter.GetCharacterSprite();
+        }
+        
+        public void OpenForGuessing(Character character)
+        {
+            ActiveCharacter = character;
+            GraphicsRoot.gameObject.SetActive(true);
+            ContinueButton.gameObject.SetActive(false);
+            OptionsRoot.gameObject.SetActive(false);
+            GuessesRoot.gameObject.SetActive(true);
+            PopulateGuessingOptions();
+            SpeakerText.text = "Who am I?";
+            FullBodyImage.sprite = ActiveCharacter.GetCharacterSprite();
+        }
+
+        private void Update()
+        {
+            FullBodyImage.sprite = ActiveCharacter.GetCharacterSprite();
         }
 
         public void PopulateOptions()
@@ -80,6 +94,22 @@ namespace MasqueradeGame
                 var optionInstance = Instantiate(OptionPrefab, OptionsRoot.transform);
                 optionInstance.Init(option.GetOptionText(), option);
                 optionInstance.Button.onClick.AddListener(() => HandleClickOption(optionInstance));
+            }
+        }
+        
+        public void PopulateGuessingOptions()
+        {
+            foreach (Transform existing in GuessesRoot.transform)
+            {
+                Destroy(existing.gameObject);
+            }
+
+            var allRoles = GameManager.allRoles;
+            foreach (RoleData role in allRoles)
+            {
+                var optionInstance = Instantiate(OptionPrefab, GuessesRoot.transform);
+                optionInstance.Init($"{role.ToString()}", StatementGeneratorManager.DirectGuess, role.roleType);
+                optionInstance.Button.onClick.AddListener(() => HandleClickGuess(optionInstance));
             }
         }
 
@@ -102,10 +132,36 @@ namespace MasqueradeGame
             Log.Add(statement.ToString());
         }
 
+        private void HandleClickGuess(InteractionButton button)
+        {
+            ContinueButton.gameObject.SetActive(true);
+            ContinueButton.onClick.RemoveAllListeners();
+            ContinueButton.onClick.AddListener(HandleClickContinueFromGuess);
+            DepopulateOptions();
+            (button.Generator as SG_GuessMyRole)!.CachedGuess = button.AssociatedRole;
+            GameStatement statement = button.Generate(GameManager, ActiveCharacter);
+            if (statement.Success)
+            {
+                ActiveCharacter.SetMask(MaskType.None);
+            }
+            else
+            {
+                GameManager.Lose();
+            }
+            SpeakerText.text = statement.Statement;
+            Log.Add(statement.ToString());
+        }
+
         private void HandleClickContinue()
         {
             GraphicsRoot.gameObject.SetActive(false);
             GameManager.AdvanceTurn();
+        }
+
+        private void HandleClickContinueFromGuess()
+        {
+            GraphicsRoot.gameObject.SetActive(false);
+            GameManager.EventPhase();
         }
     }
 }

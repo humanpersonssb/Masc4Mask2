@@ -79,10 +79,10 @@ namespace MasqueradeGame
 
             if (gameManager != null)
             {
-                //gameManager.OnCharacterSelected += ShowInteraction;
+                gameManager.OnCharacterSelectedForGuessing += ShowInteraction;
             }
         }
-
+        
         public void ShowInteraction(Character character)
         {
             Debug.Log($"InteractionManager.ShowInteraction called for {character.characterName}");

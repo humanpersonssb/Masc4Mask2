@@ -6,7 +6,8 @@ namespace MasqueradeGame
     [CreateAssetMenu(fileName = "New Role", menuName = "Masquerade/Role Data")]
     public class RoleData : ScriptableObject
     {
-        [Header("Basic Info")]
+        [Header("Basic Info")] 
+        public Sprite sprite;
         public Role roleType;
         public int influenceValue;
         public string roleName;
