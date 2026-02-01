@@ -36,6 +36,10 @@ namespace MasqueradeGame
         public int playerInfluence;
         public Role targetRole;
 
+        [Header("Clock")]
+        public RectTransform clockHand;
+        public float degreesPerRound = 30f; 
+
         [Header("Event Panel")]
         public GameObject eventPanel;
         public TMPro.TextMeshProUGUI eventText;
@@ -215,6 +219,9 @@ namespace MasqueradeGame
             {
                 currentRound++;
                 OnRoundChanged?.Invoke(currentRound);
+                
+                // Update clock hand rotation
+                UpdateClockHand();
 
                 MoveAllCharacters();
             
@@ -223,9 +230,18 @@ namespace MasqueradeGame
                     ForceGuess();
                     //EventPhase();
                 }
-        
+
                 //// hii olin
             });
+        }
+
+        private void UpdateClockHand()
+        {
+            if (clockHand != null)
+            {
+                float targetRotation = -currentRound * degreesPerRound; // Negative to rotate clockwise
+                clockHand.rotation = Quaternion.Euler(0, 0, targetRotation);
+            }
         }
 
         private void ForceGuess()
@@ -443,12 +459,12 @@ namespace MasqueradeGame
                 room.connectedRooms.Clear();
             }
 
-            AddBidirectionalConnection(study, wineCellar);
-            AddBidirectionalConnection(study, ballroom);
+            AddBidirectionalConnection(ballroom, study);
+            AddBidirectionalConnection(study, bathroom);
             AddBidirectionalConnection(ballroom, wineCellar);
             AddBidirectionalConnection(ballroom, bathroom);
             AddBidirectionalConnection(ballroom, balcony);
-            AddBidirectionalConnection(ballroom, courtyard);
+            AddBidirectionalConnection(balcony, study);
 
             AddBidirectionalConnection(balcony, courtyard);
 
