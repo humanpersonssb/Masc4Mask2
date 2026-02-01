@@ -56,7 +56,7 @@ namespace MasqueradeGame
 
         public override string GetOptionText()
         {
-            return "[RANK BETWEEN]";
+            return "How proper would you say you are? [RANK BETWEEN]";
         }
 
         public override bool CanUse(GameManager game, Character speaker)
@@ -89,7 +89,7 @@ namespace MasqueradeGame
             }
 
             RolesUsed.Add(speaker.trueRole.roleType);
-            return new GameStatement($"My influence is between {min} and {max} (inclusive).");
+            return new GameStatement($"If you must know. I'd say I have an influence between {min} and {max} inclusively.");
         }
 
         private bool IsInRange(int num, int min, int max)
@@ -194,7 +194,7 @@ namespace MasqueradeGame
         
         public override string GetOptionText()
         {
-            return "[NO SHOW]";
+            return "Did anyone cancel on you? [NO SHOW]";
         }
 
         public override GameStatement GenerateStatement(GameManager game, Character speaker, bool isTrue)
@@ -216,7 +216,7 @@ namespace MasqueradeGame
             {
                 LearnedRoles.Add(role);
             }
-            return new($"I overheard that the {role} didn't make it to the party.");
+            return new($"I was supposed to meet the {role} here. But they didn't make it to the party.");
         }
 
         private HashSet<Role> GetWhoDidntShowUp(GameManager game)
@@ -278,7 +278,7 @@ namespace MasqueradeGame
           
         
             LearnedDict[speaker.trueRole.roleType].Add(roleToLearn);
-            return new($"I have met up with {roleToLearn} today.");
+            return new($"I met up with {roleToLearn} earlier. It was quite the delight!");
         }
 
         private HashSet<Role> GetTalkHistory(Character speaker)
@@ -303,7 +303,7 @@ namespace MasqueradeGame
         
         public override string GetOptionText()
         {
-            return "[HAVENT SEEN]";
+            return "Are you looking for anyone perchance? [HAVENT SEEN]";
         }
 
         public override bool CanUse(GameManager game, Character speaker)
@@ -322,7 +322,7 @@ namespace MasqueradeGame
             List<Role> rolesToLearn = !isTrue ? GetTalkHistory(speaker).ToList() : GetUntalkHistory(game, speaker).ToList();
             if(rolesToLearn.Count == 0)
             {
-                return new($"I have introduced myself to everyone at least once today.");
+                return new($"I have made my rounds to everyone at least once today.");
             }
             Role roleToLearn;
             const int MAX_ATTEMPTS = 30;
@@ -360,7 +360,7 @@ namespace MasqueradeGame
         
         public override string GetOptionText()
         {
-            return "[ONE OF THREE]";
+            return "How would you describe yourself? [ONE OF THREE]";
         }
 
         public override bool CanUse(GameManager game, Character speaker)
@@ -396,7 +396,7 @@ namespace MasqueradeGame
                 LearnedRoles[speaker.trueRole.roleType].Add(role);
             }
 
-            return new($"I am one of the following roles: {rolesIGive[0]}, {rolesIGive[1]}, or {rolesIGive[2]}");
+            return new($"If I had to say three thrings I could be, I'd say I'm: {rolesIGive[0]}, {rolesIGive[1]}, or {rolesIGive[2]}. I can't be too specific to you.");
         }
     }
 
@@ -432,7 +432,8 @@ namespace MasqueradeGame
 
     public class SG_StoppedByGuard : StatementGenerator
     {
-        private string _trueStatement = "I can't do that right now. There's a guard in this room (it may or may not be me).";
+        //private string _trueStatement = "Shhh! You have to be careful. I've heard there is a guard in this room. (could be me haha).";
+        private string _trueStatement = "The guard's intemidating aura is overflowing in this room, making it hard to find your words.";
         private string _falseStatement = "Of course. There definitely isn't a guard present."; // confirmed pope
 
         public SG_StoppedByGuard()
@@ -688,7 +689,7 @@ namespace MasqueradeGame
 
         public override string GetOptionText()
         {
-            return "[SUM OF RANKS]";
+            return "How strong are you and your friends?[SUM OF RANKS]";
         }
         
         public override GameStatement GenerateStatement(GameManager game, Character speaker, bool isTrue)
@@ -709,7 +710,7 @@ namespace MasqueradeGame
                     total -= Random.Range(1, 6);
                 }
             }
-            return new($"The sum of my rank, {twoOthers[0].currentMask}'s rank, and {twoOthers[1].currentMask}'s rank is {total}.");
+            return new($"The sum of my influence, {twoOthers[0].currentMask}'s influence, and {twoOthers[1].currentMask}'s influence is {total}.");
         }
     }
 
@@ -722,7 +723,7 @@ namespace MasqueradeGame
         
         public override string GetOptionText()
         {
-            return "[IS ROYALTY]";
+            return "Am I currently addressing royalty?[Are they ROYALTY]";
         }
 
 
@@ -731,10 +732,10 @@ namespace MasqueradeGame
             bool sayYes = isTrue == (speaker.TrueInfluence >= 5);
             if (sayYes)
             {
-                return new("Yes, I am royalty (my rank is 5 or above).");
+                return new("Please bow, for I am royalty (Influence 5 or above).");
             }
 
-            return new("No, I am not royalty (my rank is lower than 5).");
+            return new("Don't worry, I am not royalty (Influence 4 or lower).");
         }
     }
 
@@ -747,7 +748,7 @@ namespace MasqueradeGame
         
         public override string GetOptionText()
         {
-            return "[WAS IN LAST SWAP]";
+            return "Did I just see you swap masks with someone else?[WAS IN LAST SWAP]";
         }
 
 
@@ -756,11 +757,11 @@ namespace MasqueradeGame
             bool sayYes = isTrue == speaker.WasInLastSwap;
             if (sayYes)
             {
-                return new($"Yes, I was in the last mask swap.");
+                return new($"Oh, well this is quite embarrasing... I did swap my mask with a fellow.");
             }
             else
             {
-                return new($"No, I was not in the last mask swap.");
+                return new($"No, I'm sorry but I think you have the wrong person.");
             }
         }
     }

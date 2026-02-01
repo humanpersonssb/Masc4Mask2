@@ -46,7 +46,7 @@ namespace MasqueradeGame
         public Role CurrentRole => isUsingCopiedRole ? copiedRole : trueRole.roleType;
 
         public bool WasInLastSwap = false;
-
+        public bool demasked = false;
         private void Awake()
         {
             RolesIveContacted = new();

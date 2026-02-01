@@ -117,7 +117,7 @@ MonoBehaviour:
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
   m_Interactable: 1
-  m_TargetGraphic: {fileID: 0}
+  m_TargetGraphic: {fileID: 9050357088414033137}
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
@@ -172,6 +172,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::MasqueradeGame.UI.InteractionButton
   Button: {fileID: 2149232792822753332}
   InstructionTextField: {fileID: 1035552931322853285}
+  AssociatedRole: 0
 --- !u!1 &3774856926382549710
 GameObject:
   m_ObjectHideFlags: 0
@@ -281,7 +282,7 @@ MonoBehaviour:
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
-  m_TextWrappingMode: 1
+  m_TextWrappingMode: 0
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
   m_linkedTextComponent: {fileID: 0}
