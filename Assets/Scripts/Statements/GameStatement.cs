@@ -192,7 +192,7 @@ namespace MasqueradeGame
             {
                 LearnedRoles.Add(role);
             }
-            return new($"I heard that {role} didn't show up to the party.");
+            return new($"I overheard that the {role} didn't make it to the party.");
         }
 
         private HashSet<Role> GetWhoDidntShowUp(GameManager game)
@@ -237,7 +237,7 @@ namespace MasqueradeGame
             {
                 Role roleToLearn2 = rolesToLearn[0];
                 Role anotherRandomRole = game.AllRoles.Where(x => x != roleToLearn2).ToList()[Random.Range(0, game.AllRoles.Count)];
-                return new($"I only talked to one person today, and that was either the {roleToLearn2} or the {anotherRandomRole}. I forgot.");
+                return new($"I've only gotten to one person so far today. It was either the {roleToLearn2} or the {anotherRandomRole}. I seem to have forgotten.");
             }
             Role roleToLearn;
             const int MAX_ATTEMPTS = 30;
@@ -249,7 +249,7 @@ namespace MasqueradeGame
           
         
             LearnedDict[speaker.trueRole.roleType].Add(roleToLearn);
-            return new($"I have been in the same room as {roleToLearn} today.");
+            return new($"I have met up with {roleToLearn} today.");
         }
 
         private HashSet<Role> GetTalkHistory(Character speaker)
@@ -288,7 +288,7 @@ namespace MasqueradeGame
             List<Role> rolesToLearn = !isTrue ? GetTalkHistory(speaker).ToList() : GetUntalkHistory(game, speaker).ToList();
             if(rolesToLearn.Count == 0)
             {
-                return new($"I have been in the same room as everyone at least once today.");
+                return new($"I have introduced myself to everyone at least once today.");
             }
             Role roleToLearn;
             const int MAX_ATTEMPTS = 30;
@@ -300,7 +300,7 @@ namespace MasqueradeGame
           
         
             LearnedDict[speaker.trueRole.roleType].Add(roleToLearn);
-            return new($"I haven't been in the same room as {roleToLearn} today.");
+            return new($"Have you seen {roleToLearn}? I have yet to find them today.");
         }
 
         private HashSet<Role> GetTalkHistory(Character speaker)
@@ -389,7 +389,7 @@ namespace MasqueradeGame
     public class SG_StoppedByGuard : StatementGenerator
     {
         private string _trueStatement = "I can't do that right now. There's a guard in this room (it may or may not be me).";
-        private string _falseStatement = "I can't do that right now. There isn't a guard present."; // confirmed pope
+        private string _falseStatement = "Of course. There definitely isn't a guard present."; // confirmed pope
 
         public SG_StoppedByGuard()
         {
@@ -471,7 +471,7 @@ namespace MasqueradeGame
                     return new("I haven't spoken with anyone today.");
                 }
                 Role lastTalkedTo = speaker.lastContactedCharacter.trueRole.roleType;
-                return new($"The last person I talked to was the {lastTalkedTo}.");
+                return new($"I just talked to the {lastTalkedTo}. They were quite agreeable.");
             }
             else
             {
@@ -491,7 +491,7 @@ namespace MasqueradeGame
                     if(lie != lastTalkedTo) break;
                 } while(true);
 
-                return new($"The last person I talked to was the {lie}.");
+                return new($"I just talked to the {lie}. They were quite agreeable.");
             }
         }
     }
@@ -558,7 +558,7 @@ namespace MasqueradeGame
                 return GameStatement.DummyStatement();
             }
 
-            return new($"The {infoCharacter.trueRole.roleType} is the guy in the {infoCharacter.currentMask} mask!");
+            return new($"The {infoCharacter.trueRole.roleType} is the face behind the {infoCharacter.currentMask} mask!");
         }
     }
 
@@ -576,7 +576,7 @@ namespace MasqueradeGame
 
         public override GameStatement GenerateStatement(GameManager game, Character speaker, bool isTrue)
         {
-            return new($"(This person refuses to be interrogated... they have higher reputation than you.)" , -1);
+            return new($"(This person refuses to be interrogated... they must have higher reputation than you.)" , -1);
         }
     }
 
@@ -594,7 +594,7 @@ namespace MasqueradeGame
 
         public override GameStatement GenerateStatement(GameManager game, Character speaker, bool isTrue)
         {
-            return new($"(This person doesn't want to be your friend... their rank is too far from yours.)" , -1);
+            return new($"(This person doesn't want to be your friend... their reputation is too far from yours.)" , -1);
         }
     }
 }
