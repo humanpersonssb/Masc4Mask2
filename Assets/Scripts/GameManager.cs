@@ -4,6 +4,7 @@ using System.Linq;
 using System;
 using MasqueradeGame.UI;
 using MasqueradeGame.VFX;
+using TMPro;
 
 namespace MasqueradeGame
 {
@@ -98,17 +99,21 @@ namespace MasqueradeGame
             }
         }
 
+        public CurtainTransition CurtainVfx;
         public void StartNewGame(Difficulty difficulty)
         {
-            currentDifficulty = difficulty;
-            currentRound = 0;
-            isGameActive = true;
+            CurtainVfx.DoFade(() =>
+            {
+                currentDifficulty = difficulty;
+                currentRound = 0;
+                isGameActive = true;
 
-            SetDifficultyParameters();
-            SetupRoles();
-            SetupCharacters();
+                SetDifficultyParameters();
+                SetupRoles();
+                SetupCharacters();
 
-            Debug.Log($"Game started! Difficulty: {difficulty}, Target: {targetRole}, Influence: {playerInfluence}");
+                Debug.Log($"Game started! Difficulty: {difficulty}, Target: {targetRole}, Influence: {playerInfluence}");
+            });
         }
 
         private void SetDifficultyParameters()
@@ -224,6 +229,12 @@ namespace MasqueradeGame
                 UpdateClockHand();
 
                 MoveAllCharacters();
+
+                if (currentRound >= 15)
+                {
+                    Win();
+                    return;
+                }
             
                 if (currentRound % 3 == 0)
                 {
@@ -416,10 +427,19 @@ namespace MasqueradeGame
         }
 
         public RectTransform LoseGraphicsRoot;
+        public TextMeshProUGUI LoseText;
         public void Lose()
         {
             EndGame();
             LoseGraphicsRoot.gameObject.SetActive(true);
+            LoseText.text = Score.ToString();
+        }
+        
+        public RectTransform WinGraphicsRoot;
+        public void Win()
+        {
+            EndGame();
+            WinGraphicsRoot.gameObject.SetActive(true);
         }
 
         private void EndGame()
