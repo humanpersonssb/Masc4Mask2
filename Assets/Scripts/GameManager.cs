@@ -236,38 +236,109 @@ namespace MasqueradeGame
 
         public void EventPhase()
         {
-            List<Room> allRooms = new List<Room> { ballroom, bathroom, balcony, study, wineCellar, courtyard };
-            List<Room> roomsWithMultipleCharacters = allRooms.Where(r => r.OccupantCount >= 2).ToList();
+            Character char1 = null;
+            Character char2 = null;
+            bool foundValidPair = false;
+            int attempts = 0;
+            int maxAttempts = 50;
 
-            if (roomsWithMultipleCharacters.Count == 0)
+            // After round 10, we can swap masks between any two characters
+            if (currentRound > 10)
             {
-                Debug.Log("No rooms with multiple characters for event phase");
-                return;
+                List<Character> eligibleCharacters = charactersInPlay.Where(c => !c.demasked).ToList();
+                
+                if (eligibleCharacters.Count < 2)
+                {
+                    Debug.Log("Not enough eligible characters for event phase");
+                    return;
+                }
+
+                while (!foundValidPair && attempts < maxAttempts)
+                {
+                    char1 = eligibleCharacters[UnityEngine.Random.Range(0, eligibleCharacters.Count)];
+                    char2 = eligibleCharacters[UnityEngine.Random.Range(0, eligibleCharacters.Count)];
+                    
+                    if (char1 != char2 && !char1.demasked && !char2.demasked)
+                    {
+                        foundValidPair = true;
+                    }
+                    attempts++;
+                }
+
+                if (foundValidPair)
+                {
+                    char1.SwapMasks(char2);
+
+                    if (eventPanel != null && eventText != null)
+                    {
+                        string roleName = UnityEngine.Random.value > 0.5f ? char1.trueRole.roleName : char2.trueRole.roleName;
+                        
+                        eventText.text = $"Chaos at the masquerade!\n\nThe {roleName} has swapped masks with someone!";
+                        
+                        eventPanel.SetActive(true);
+                    }
+
+                    Debug.Log($"Event (Late Game): {char1.characterName} ({char1.trueRole.roleName}) swapped masks with {char2.characterName} ({char2.trueRole.roleName})");
+                }
+            }
+            else
+            {
+                // Before round 10, must be in the same room
+                List<Room> allRooms = new List<Room> { ballroom, bathroom, balcony, study, wineCellar, courtyard };
+                List<Room> roomsWithMultipleCharacters = allRooms.Where(r => r.OccupantCount >= 2).ToList();
+
+                if (roomsWithMultipleCharacters.Count == 0)
+                {
+                    Debug.Log("No rooms with multiple characters for event phase");
+                    return;
+                }
+
+                while (!foundValidPair && attempts < maxAttempts)
+                {
+                    Room selectedRoom = roomsWithMultipleCharacters[UnityEngine.Random.Range(0, roomsWithMultipleCharacters.Count)];
+                    List<Character> occupants = selectedRoom.Occupants.Where(c => !c.demasked).ToList();
+
+                    if (occupants.Count < 2)
+                    {
+                        attempts++;
+                        continue;
+                    }
+
+                    char1 = occupants[UnityEngine.Random.Range(0, occupants.Count)];
+                    
+                    do
+                    {
+                        char2 = occupants[UnityEngine.Random.Range(0, occupants.Count)];
+                    } while (char2 == char1 && occupants.Count > 1);
+
+                    if (char1 != char2 && !char1.demasked && !char2.demasked)
+                    {
+                        foundValidPair = true;
+                    }
+                    attempts++;
+                }
+
+                if (foundValidPair)
+                {
+                    char1.SwapMasks(char2);
+
+                    if (eventPanel != null && eventText != null)
+                    {
+                        string roleName = UnityEngine.Random.value > 0.5f ? char1.trueRole.roleName : char2.trueRole.roleName;
+                        
+                        eventText.text = $"A commotion in the {char1.currentRoom.displayName}!\n\nThe {roleName} has swapped masks with someone in their room!";
+                        
+                        eventPanel.SetActive(true);
+                    }
+
+                    Debug.Log($"Event: {char1.characterName} ({char1.trueRole.roleName}) swapped masks with {char2.characterName} ({char2.trueRole.roleName}) in {char1.currentRoom.displayName}");
+                }
             }
 
-            Room selectedRoom = roomsWithMultipleCharacters[UnityEngine.Random.Range(0, roomsWithMultipleCharacters.Count)];
-
-            List<Character> occupants = selectedRoom.Occupants;
-            Character char1 = occupants[UnityEngine.Random.Range(0, occupants.Count)];
-            Character char2;
-            
-            do
+            if (!foundValidPair)
             {
-                char2 = occupants[UnityEngine.Random.Range(0, occupants.Count)];
-            } while (char2 == char1 && occupants.Count > 1);
-
-            char1.SwapMasks(char2);
-
-            if (eventPanel != null && eventText != null)
-            {
-                string roleName = UnityEngine.Random.value > 0.5f ? char1.trueRole.roleName : char2.trueRole.roleName;
-                
-                eventText.text = $"The {roleName} has swapped masks with someone!";
-                
-                eventPanel.SetActive(true);
+                Debug.Log("Could not find valid pair for event phase after max attempts");
             }
-
-            Debug.Log($"Event: {char1.characterName} ({char1.trueRole.roleName}) swapped masks with {char2.characterName} ({char2.trueRole.roleName}) in {selectedRoom.displayName}");
         }
 
         private void CloseEventPanel()
@@ -288,7 +359,6 @@ namespace MasqueradeGame
                 if (nextRoom != null)
                 {
                     nextRoomIntentions[character] = nextRoom;
-                    //character.MoveToRoom(nextRoom);
                 }
             }
 
