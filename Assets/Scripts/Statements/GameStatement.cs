@@ -56,7 +56,7 @@ namespace MasqueradeGame
 
         public override string GetOptionText()
         {
-            return "How proper would you say you are? [RANK BETWEEN]";
+            return "[Probe for Rank] My rank is between...";
         }
 
         public override bool CanUse(GameManager game, Character speaker)
@@ -194,7 +194,7 @@ namespace MasqueradeGame
         
         public override string GetOptionText()
         {
-            return "Did anyone cancel on you? [NO SHOW]";
+            return "[Anyone Missing?] Learn which role is NOT present.";
         }
 
         public override GameStatement GenerateStatement(GameManager game, Character speaker, bool isTrue)
@@ -303,7 +303,7 @@ namespace MasqueradeGame
         
         public override string GetOptionText()
         {
-            return "Are you looking for anyone perchance? [HAVENT SEEN]";
+            return "[Looking for Anyone?] Learn a role I haven't been in the same room as.";
         }
 
         public override bool CanUse(GameManager game, Character speaker)
@@ -360,7 +360,7 @@ namespace MasqueradeGame
         
         public override string GetOptionText()
         {
-            return "How would you describe yourself? [ONE OF THREE]";
+            return "[Describe Yourself] Learn 3 roles. I am one of them.";
         }
 
         public override bool CanUse(GameManager game, Character speaker)
@@ -689,7 +689,7 @@ namespace MasqueradeGame
 
         public override string GetOptionText()
         {
-            return "How strong are you and your friends?[SUM OF RANKS]";
+            return "[Unity] Learn the sum of my rank and two other characters.";
         }
         
         public override GameStatement GenerateStatement(GameManager game, Character speaker, bool isTrue)
@@ -723,7 +723,7 @@ namespace MasqueradeGame
         
         public override string GetOptionText()
         {
-            return "Am I currently addressing royalty?[Are they ROYALTY]";
+            return "[Royalty] Learn if my rank is 5 or above.";
         }
 
 
@@ -748,7 +748,7 @@ namespace MasqueradeGame
         
         public override string GetOptionText()
         {
-            return "Did I just see you swap masks with someone else?[WAS IN LAST SWAP]";
+            return "[Masquerade] Learn if I swapped masks with someone in the last 3 rounds.";
         }
 
 

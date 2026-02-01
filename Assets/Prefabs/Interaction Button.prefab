@@ -244,8 +244,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Guess
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: e8c900aa4dc4dd443a6981afae86097a, type: 2}
-  m_sharedMaterial: {fileID: 672142866412504140, guid: e8c900aa4dc4dd443a6981afae86097a, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 80b1670c8babf594a83b6f0e9aae95ff, type: 2}
+  m_sharedMaterial: {fileID: 5146315332241278304, guid: 80b1670c8babf594a83b6f0e9aae95ff, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -269,8 +269,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 24
-  m_fontSizeBase: 24
+  m_fontSize: 20
+  m_fontSizeBase: 20
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18

@@ -220,7 +220,7 @@ namespace MasqueradeGame
 
         public void AdvanceTurn()
         {
-            ScreenFader.DoFade(() =>
+            CurtainVfx.DoFade(() =>
             {
                 currentRound++;
                 OnRoundChanged?.Invoke(currentRound);

@@ -44,6 +44,7 @@ namespace MasqueradeGame
 
         public int TrueInfluence => trueRole.influenceValue;
         public Role CurrentRole => isUsingCopiedRole ? copiedRole : trueRole.roleType;
+        public Image Background;
 
         public bool WasInLastSwap = false;
         public bool demasked = false;
@@ -86,6 +87,8 @@ namespace MasqueradeGame
         
                 if (silhouetteUI != null)
                     silhouetteUI.enabled = false;
+                
+                Background.enabled = false;
             }
             else
             {
@@ -94,6 +97,8 @@ namespace MasqueradeGame
         
                 if (silhouetteUI != null)
                     silhouetteUI.enabled = true;
+                
+                Background.enabled = true;
             }
         }
 
