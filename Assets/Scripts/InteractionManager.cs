@@ -79,7 +79,7 @@ namespace MasqueradeGame
 
             if (gameManager != null)
             {
-                gameManager.OnCharacterSelected += ShowInteraction;
+                //gameManager.OnCharacterSelected += ShowInteraction;
             }
         }
 
