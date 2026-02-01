@@ -109,7 +109,7 @@ namespace MasqueradeGame
 
         private void UpdateGameInfoDisplay()
         {
-            roundText.text = $"Round: {gameManager.CurrentRound}/{gameManager}";
+            roundText.text = $"Round: {gameManager.CurrentRound}";
         }
 
         private void UpdateAllRoomDisplays()
