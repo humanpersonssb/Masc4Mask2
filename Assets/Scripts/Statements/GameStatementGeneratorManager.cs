@@ -22,6 +22,8 @@ namespace MasqueradeGame
         public StatementGenerator InterrogateFail;
         public StatementGenerator BefriendFail;
 
+        public List<StatementGenerator> ManualOptions;
+
 
         private void Awake()
         {
@@ -58,11 +60,19 @@ namespace MasqueradeGame
             var interrogateFail = new SG_InterrogateFail();
             var befriendFail = new SG_BefriendFail();
             var identityOfOne = new SG_IdentityOfANonTarget();
+            var isRoyalty = new SG_IsRoyalty();
+            var wasInLast = new SG_WasInLastSwap();
+            var sumOfRanks = new SG_SumOfRanks();
+            
+            ManualOptions = new List<StatementGenerator>()
+            {
+                haventTalked, didntShow, isRoyalty, sumOfRanks, oneOfThree, influenceBetween, wasInLast
+            };
 
             LiveGenerators = new List<StatementGenerator>()
             {
                 guessRole, oneOfThree, haventTalked, haveTalked, lastTalked, influenceEven, 
-                influenceBetween, stoppedByGuard, didntShow, identityOfOne
+                influenceBetween, stoppedByGuard, didntShow, identityOfOne, isRoyalty, wasInLast, sumOfRanks
             };
 
             TalkGenerators = new List<StatementGenerator>()

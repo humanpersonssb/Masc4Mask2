@@ -34,6 +34,7 @@ namespace MasqueradeGame
     // give it to them again.)
     public abstract class StatementGenerator
     {
+        public abstract string GetOptionText();
         public abstract bool CanUse(GameManager game, Character speaker);
         public abstract GameStatement GenerateStatement(GameManager game, Character speaker, bool isTrue);
     }
@@ -50,6 +51,11 @@ namespace MasqueradeGame
             _rangeMin = rangeMin;
             _rangeMax = rangeMax;
             RolesUsed = new();
+        }
+
+        public override string GetOptionText()
+        {
+            return "[RANK BETWEEN]";
         }
 
         public override bool CanUse(GameManager game, Character speaker)
@@ -98,6 +104,11 @@ namespace MasqueradeGame
         {
             RolesUsed = new();
         }
+        
+        public override string GetOptionText()
+        {
+            return "";
+        }
 
         public override bool CanUse(GameManager game, Character speaker)
         {
@@ -132,6 +143,11 @@ namespace MasqueradeGame
         public SG_MyInfluenceIsPrime()
         {
             RolesUsed = new();
+        }
+        
+        public override string GetOptionText()
+        {
+            return "";
         }
 
         public override bool CanUse(GameManager game, Character speaker)
@@ -174,6 +190,11 @@ namespace MasqueradeGame
         {
             return LearnedRoles.Count < 2;
         }
+        
+        public override string GetOptionText()
+        {
+            return "[NO SHOW]";
+        }
 
         public override GameStatement GenerateStatement(GameManager game, Character speaker, bool isTrue)
         {
@@ -215,6 +236,11 @@ namespace MasqueradeGame
         public SG_IHaveTalkedTo()
         {
             LearnedDict = new();
+        }
+        
+        public override string GetOptionText()
+        {
+            return "";
         }
 
         public override bool CanUse(GameManager game, Character speaker)
@@ -273,6 +299,11 @@ namespace MasqueradeGame
         {
             LearnedDict = new();
         }
+        
+        public override string GetOptionText()
+        {
+            return "[HAVENT SEEN]";
+        }
 
         public override bool CanUse(GameManager game, Character speaker)
         {
@@ -325,6 +356,11 @@ namespace MasqueradeGame
         {
             LearnedRoles = new();
         }
+        
+        public override string GetOptionText()
+        {
+            return "[ONE OF THREE]";
+        }
 
         public override bool CanUse(GameManager game, Character speaker)
         {
@@ -371,6 +407,11 @@ namespace MasqueradeGame
             "James is my favourite!",
             "This party is awesome!"     
         };
+        
+        public override string GetOptionText()
+        {
+            return "";
+        }
 
         public SG_Fluff()
         {
@@ -397,6 +438,11 @@ namespace MasqueradeGame
         {
 
         }
+        
+        public override string GetOptionText()
+        {
+            return "";
+        }
 
         public override bool CanUse(GameManager game, Character speaker)
         {
@@ -416,6 +462,11 @@ namespace MasqueradeGame
         public SG_TargetIsOneOfTwo()
         {
             UsageCount = 0;
+        }
+        
+        public override string GetOptionText()
+        {
+            return "";
         }
 
         public override bool CanUse(GameManager game, Character speaker)
@@ -455,6 +506,11 @@ namespace MasqueradeGame
         public SG_ILastTalkedTo()
         {
 
+        }
+        
+        public override string GetOptionText()
+        {
+            return "";
         }
 
         public override bool CanUse(GameManager game, Character speaker)
@@ -507,7 +563,11 @@ namespace MasqueradeGame
 
         }
 
-        
+        public override string GetOptionText()
+        {
+            return "Who am I?";
+        }
+
         public override bool CanUse(GameManager game, Character speaker)
         {
             return true;
@@ -538,6 +598,12 @@ namespace MasqueradeGame
         {
             RolesGiven = new();
         }
+        
+        public override string GetOptionText()
+        {
+            return "";
+        }
+
 
         public override bool CanUse(GameManager game, Character speaker)
         {
@@ -570,6 +636,12 @@ namespace MasqueradeGame
         {
 
         }
+        
+        public override string GetOptionText()
+        {
+            return "";
+        }
+
 
         public override bool CanUse(GameManager game, Character speaker)
         {
@@ -588,6 +660,12 @@ namespace MasqueradeGame
         {
 
         }
+        
+        public override string GetOptionText()
+        {
+            return "";
+        }
+
 
         public override bool CanUse(GameManager game, Character speaker)
         {
@@ -607,6 +685,11 @@ namespace MasqueradeGame
             return false;
         }
 
+        public override string GetOptionText()
+        {
+            return "[SUM OF RANKS]";
+        }
+        
         public override GameStatement GenerateStatement(GameManager game, Character speaker, bool isTrue)
         {
             int myRank = speaker.TrueInfluence;
@@ -635,6 +718,12 @@ namespace MasqueradeGame
         {
             return false;
         }
+        
+        public override string GetOptionText()
+        {
+            return "[IS ROYALTY]";
+        }
+
 
         public override GameStatement GenerateStatement(GameManager game, Character speaker, bool isTrue)
         {
@@ -654,6 +743,12 @@ namespace MasqueradeGame
         {
             return false;
         }
+        
+        public override string GetOptionText()
+        {
+            return "[WAS IN LAST SWAP]";
+        }
+
 
         public override GameStatement GenerateStatement(GameManager game, Character speaker, bool isTrue)
         {
