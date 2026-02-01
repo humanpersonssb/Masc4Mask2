@@ -9,12 +9,12 @@ namespace MasqueradeGame
     {
         [Header("Game Settings")]
         public Difficulty currentDifficulty;
-        public int maxRounds = 12;
+        public int maxRounds = 15;
         public int currentRound = 0;
 
         [Header("Role Configuration")]
         public List<RoleData> allRoles; 
-        public int numberOfCharactersInPlay = 6; 
+        public int numberOfCharactersInPlay = 7; 
 
         [Header("Mask Configuration")]
         public List<MaskVisuals> allMaskVisuals;
@@ -116,7 +116,7 @@ namespace MasqueradeGame
                     break;
                 case Difficulty.Hard:
                     playerInfluence = 1;
-                    numberOfCharactersInPlay = 8;
+                    numberOfCharactersInPlay = 7;
                     break;
             }
         }
