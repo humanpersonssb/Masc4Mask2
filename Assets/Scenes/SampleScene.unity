@@ -11877,28 +11877,28 @@ MonoBehaviour:
   numberOfCharactersInPlay: 7
   allMaskVisuals:
   - maskType: 0
-    maskIcon: {fileID: 21300000, guid: 154256e104677444d8d8c054fc829920, type: 3}
+    maskIcon: {fileID: 21300000, guid: 3402bc280aa8bb247b30d0812b5ca67d, type: 3}
     silhouette: {fileID: 21300000, guid: 83f1a9f79a3cc724d925a8623198e7f0, type: 3}
   - maskType: 1
-    maskIcon: {fileID: 21300000, guid: 6a8e4eb3d4041654a81ec9a094602e9c, type: 3}
+    maskIcon: {fileID: 21300000, guid: b7a3aaad49361384f9bc35876f54287d, type: 3}
     silhouette: {fileID: 21300000, guid: 83f1a9f79a3cc724d925a8623198e7f0, type: 3}
   - maskType: 2
-    maskIcon: {fileID: 21300000, guid: 34c0296803d16b249b5ea1251e225b2f, type: 3}
+    maskIcon: {fileID: 21300000, guid: 8b5dddec9e6edf54d9875faa832daf1e, type: 3}
     silhouette: {fileID: 21300000, guid: 83f1a9f79a3cc724d925a8623198e7f0, type: 3}
   - maskType: 3
-    maskIcon: {fileID: 21300000, guid: c73b253885bdf5949939138c13b40512, type: 3}
+    maskIcon: {fileID: 21300000, guid: 83cad56afc0691945b71f8a7dc8f68cc, type: 3}
     silhouette: {fileID: 21300000, guid: 83f1a9f79a3cc724d925a8623198e7f0, type: 3}
   - maskType: 4
-    maskIcon: {fileID: 21300000, guid: 7f0f26a855fb6f54d8186e4fe6b600f5, type: 3}
+    maskIcon: {fileID: 21300000, guid: 1fdcb45e778b8054bbf039898eb4157c, type: 3}
     silhouette: {fileID: 21300000, guid: 83f1a9f79a3cc724d925a8623198e7f0, type: 3}
   - maskType: 5
-    maskIcon: {fileID: 21300000, guid: d5eb1c5187edf4b46a3827e6c3c9c606, type: 3}
+    maskIcon: {fileID: 21300000, guid: 06a2dff06f3c70e4eae8b245691b6d7e, type: 3}
     silhouette: {fileID: 21300000, guid: 83f1a9f79a3cc724d925a8623198e7f0, type: 3}
   - maskType: 6
-    maskIcon: {fileID: 21300000, guid: 1c73355dd2e83274c8c77f3b86d7fffd, type: 3}
+    maskIcon: {fileID: 21300000, guid: f24062543e6fdd542950f05597d6f1b0, type: 3}
     silhouette: {fileID: 21300000, guid: 83f1a9f79a3cc724d925a8623198e7f0, type: 3}
   - maskType: 7
-    maskIcon: {fileID: 21300000, guid: 5c6b003525793e542901a796962d64cf, type: 3}
+    maskIcon: {fileID: 21300000, guid: 9bad7f96625dc144dbe2775d02029eea, type: 3}
     silhouette: {fileID: 21300000, guid: 83f1a9f79a3cc724d925a8623198e7f0, type: 3}
   ballroom: {fileID: 2048618749}
   bathroom: {fileID: 220375283}
