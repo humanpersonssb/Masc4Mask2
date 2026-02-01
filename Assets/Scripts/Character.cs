@@ -141,6 +141,8 @@ namespace MasqueradeGame
                 Debug.Log($"Invoking OnCharacterClicked event for {characterName}");
                 OnCharacterClicked?.Invoke(this);
             }
+            
+            AudioManager.Instance.audioPlayer.PlayOneShot(AudioManager.Instance.clickSomething);
         }
 
 public void Initialize(RoleData role, MaskVisuals maskVisuals, Room startingRoom)

@@ -695,7 +695,9 @@ namespace MasqueradeGame
         public override GameStatement GenerateStatement(GameManager game, Character speaker, bool isTrue)
         {
             int myRank = speaker.TrueInfluence;
-            List<Character> twoOthers = game.AllMaskedCharacters.OrderBy(_ => Guid.NewGuid()).Take(2).ToList();
+            List<Character> twoOthers = game.AllMaskedCharacters
+                .Where(x => x != speaker)
+                .OrderBy(_ => Guid.NewGuid()).Take(2).ToList();
             int sumRank = twoOthers.Sum(x => x.TrueInfluence);
             int total = sumRank + myRank;
             if (!isTrue)
@@ -707,8 +709,10 @@ namespace MasqueradeGame
                 }
                 else
                 {
-                    total -= Random.Range(1, 6);
+                    total -= Random.Range(1, 5);
                 }
+
+                if (total < 5) total = 5;
             }
             return new($"The sum of my influence, {twoOthers[0].currentMask}'s influence, and {twoOthers[1].currentMask}'s influence is {total}.");
         }

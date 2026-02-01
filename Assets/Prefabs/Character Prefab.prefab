@@ -436,14 +436,14 @@ MonoBehaviour:
   m_text: Porcupine
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 80b1670c8babf594a83b6f0e9aae95ff, type: 2}
-  m_sharedMaterial: {fileID: 5146315332241278304, guid: 80b1670c8babf594a83b6f0e9aae95ff, type: 2}
+  m_sharedMaterial: {fileID: 2100000, guid: 99ba1d71e4cbe9742b1405335be1dc93, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4283585279
-  m_fontColor: {r: 1, g: 0.3226415, b: 0.3226415, a: 1}
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
