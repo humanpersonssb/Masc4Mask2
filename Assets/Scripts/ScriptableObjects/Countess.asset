@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Countess
   m_EditorClassIdentifier: Assembly-CSharp::MasqueradeGame.RoleData
   sprite: {fileID: 21300000, guid: f4a75fa06c5cde2478ba70e8334ad88a, type: 3}
+  smallSprite: {fileID: 21300000, guid: feeab3c6da730fe4499db9ac323c3715, type: 3}
   roleType: 4
   influenceValue: 4
   roleName: Countess

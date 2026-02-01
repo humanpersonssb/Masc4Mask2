@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Guard
   m_EditorClassIdentifier: Assembly-CSharp::MasqueradeGame.RoleData
   sprite: {fileID: 21300000, guid: 52a0fb24c5d52ac47be4e51d6f6d5910, type: 3}
+  smallSprite: {fileID: 21300000, guid: 0c872f58427b4124dbb2de385ba3bb73, type: 3}
   roleType: 1
   influenceValue: 1
   roleName: Guard

@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Prime Minister
   m_EditorClassIdentifier: Assembly-CSharp::MasqueradeGame.RoleData
   sprite: {fileID: 21300000, guid: 015c97b77d38fd148938002cc9f72b48, type: 3}
+  smallSprite: {fileID: 21300000, guid: d2041b59e8193874abafb978effb2312, type: 3}
   roleType: 6
   influenceValue: 6
   roleName: Duke

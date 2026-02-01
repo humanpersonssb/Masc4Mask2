@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: King
   m_EditorClassIdentifier: Assembly-CSharp::MasqueradeGame.RoleData
   sprite: {fileID: 21300000, guid: a7aab47db4e25c745817ed04473d6e3d, type: 3}
+  smallSprite: {fileID: 21300000, guid: 51d86aa870d52834d91248e754274d0d, type: 3}
   roleType: 9
   influenceValue: 9
   roleName: King

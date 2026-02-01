@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Spy
   m_EditorClassIdentifier: Assembly-CSharp::MasqueradeGame.RoleData
   sprite: {fileID: 21300000, guid: c9a4214e81bd7ed49bb0318d80e73144, type: 3}
+  smallSprite: {fileID: 21300000, guid: 44a7c725ede7d8a418dc460f5a09949a, type: 3}
   roleType: 0
   influenceValue: 0
   roleName: Spy

@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Princess
   m_EditorClassIdentifier: Assembly-CSharp::MasqueradeGame.RoleData
   sprite: {fileID: 21300000, guid: dfd35bb9f4b313a4195a54c33b8d62c9, type: 3}
+  smallSprite: {fileID: 21300000, guid: e683e5808343a8a4088e5478def9daa2, type: 3}
   roleType: 7
   influenceValue: 7
   roleName: Princess

@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Tailor
   m_EditorClassIdentifier: Assembly-CSharp::MasqueradeGame.RoleData
   sprite: {fileID: 21300000, guid: ba8785f9075a91b4696ff872cd3f1559, type: 3}
+  smallSprite: {fileID: 21300000, guid: d7693548f02d9f54f97327add900ea79, type: 3}
   roleType: 2
   influenceValue: 2
   roleName: Tailor
