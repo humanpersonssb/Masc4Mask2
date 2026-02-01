@@ -9567,11 +9567,27 @@ MonoBehaviour:
   OptionPrefab: {fileID: 4906824719471758697, guid: 5fea67def0c23a34797ee20cbd368f70, type: 3}
   OptionCount: 4
   IntroductionTexts:
-  - Hello
-  - Hey
-  - Sup
-  - Nice to meet you
-  - Konnichiwa
+  - What an agreeable party, wouldn't you say?
+  - It has been too long. How have you been?
+  - How have the festivties been treating you?
+  - What can I help you with today?
+  - Did you try the chardonnay? I've already had 4 glasses.
+  - Might I help you, my fine lady?
+  - Oh dear, I seem to have lost my shoe?
+  - Have you seen the man who was arfarfanarf? Very unsightly.
+  - Hmphh. You again.
+  - Love the mask, very original.
+  - Did you see how agreeable wolf mask was?
+  - Looking for a good time?
+  - This is my favorite song!
+  - Did you hear the tale of sir Zimmerman?
+  - Mighty fine evening wouldn't you say?
+  - I'll offer you some dirty information, but for a price.
+  - Did you hear the queen shouted at a block of swiss cheese? That lady done lost
+    her mind.
+  - Why is the queen such a hit at the masquerade? She ruled the dance floor.
+  - Its been quite some time since my last party. Tonight will be fantastic!
+  - Well well well, look who we have here. Or well, I assume.
   ActiveCharacter: {fileID: 0}
   Log: []
 --- !u!1 &1220857447
