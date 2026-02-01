@@ -8,6 +8,7 @@ namespace MasqueradeGame
     {
         [Header("Basic Info")] 
         public Sprite sprite;
+        public Sprite smallSprite;
         public Role roleType;
         public int influenceValue;
         public string roleName;

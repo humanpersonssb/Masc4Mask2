@@ -47,7 +47,7 @@ namespace MasqueradeGame
         public Image Background;
 
         public bool WasInLastSwap = false;
-        public bool demasked = false;
+        public bool demasked => currentMask == MaskType.None;
         private void Awake()
         {
             RolesIveContacted = new();
@@ -77,7 +77,7 @@ namespace MasqueradeGame
 
         private void Update()
         {
-            maskIconUI.sprite = maskIcon;
+            maskIconUI.sprite = GetSmallSprite();
     
             // Hide sprites
             if (currentRoom != null && currentRoom.isBlindSpot)
@@ -118,6 +118,15 @@ namespace MasqueradeGame
                 return trueRole.sprite;
             }
             return silhouetteSprite;
+        }
+
+        public Sprite GetSmallSprite()
+        {
+            if (currentMask == MaskType.None)
+            {
+                return trueRole.smallSprite;
+            }
+            return maskIcon;
         }
 
         public void OnClicked()
@@ -170,7 +179,7 @@ public void Initialize(RoleData role, MaskVisuals maskVisuals, Room startingRoom
             {
                 foreach (Character other in currentRoom.Occupants)
                 {
-                    if (other != this)
+                    if (other != this && other.currentMask != MaskType.None && currentMask != MaskType.None)
                     {
                         SwapMasks(other);
                         Debug.Log($"Princess {characterName} swapped masks with {other.characterName}");

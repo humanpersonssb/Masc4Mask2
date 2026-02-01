@@ -41,6 +41,7 @@ namespace MasqueradeGame.UI
         public void OnPointerEnter(PointerEventData eventData)
         {
             SelectorIsOn = true;
+            AudioManager.Instance.audioPlayer.PlayOneShot(AudioManager.Instance.hoverSomething);
         }
 
         public void OnPointerExit(PointerEventData eventData)

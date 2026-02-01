@@ -151,6 +151,7 @@ namespace MasqueradeGame
             var statement = button.Generate(GameManager, ActiveCharacter);
             SpeakerText.text = statement.Statement;
             Log.Add(statement.ToString());
+            AudioManager.Instance.audioPlayer.PlayOneShot(AudioManager.Instance.clickSomething);
         }
 
         private void HandleClickGuess(InteractionButton button)
@@ -174,6 +175,7 @@ namespace MasqueradeGame
                 SpeakerText.text = statement.Statement;
                 Log.Add(statement.ToString());
             }));
+            AudioManager.Instance.audioPlayer.PlayOneShot(AudioManager.Instance.clickSomething);
         }
 
         private void HandleClickContinue()

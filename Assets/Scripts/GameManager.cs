@@ -114,6 +114,7 @@ namespace MasqueradeGame
 
                 Debug.Log($"Game started! Difficulty: {difficulty}, Target: {targetRole}, Influence: {playerInfluence}");
             });
+            AudioManager.Instance.audioPlayer.PlayOneShot(AudioManager.Instance.startGame);
         }
 
         private void SetDifficultyParameters()
@@ -433,6 +434,7 @@ namespace MasqueradeGame
             EndGame();
             LoseGraphicsRoot.gameObject.SetActive(true);
             LoseText.text = Score.ToString();
+            AudioManager.Instance.audioPlayer.PlayOneShot(AudioManager.Instance.endGame);
         }
         
         public RectTransform WinGraphicsRoot;
@@ -440,6 +442,7 @@ namespace MasqueradeGame
         {
             EndGame();
             WinGraphicsRoot.gameObject.SetActive(true);
+            AudioManager.Instance.audioPlayer.PlayOneShot(AudioManager.Instance.endGame);
         }
 
         private void EndGame()
