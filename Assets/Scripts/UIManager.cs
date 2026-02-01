@@ -9,8 +9,7 @@ namespace MasqueradeGame
     {
         [Header("Game Info Display")]
         public TextMeshProUGUI roundText;
-        public TextMeshProUGUI influenceText;
-        public TextMeshProUGUI targetRoleText;
+        public TextMeshProUGUI scoreText;
 
         [Header("Difficulty Selection")]
         public GameObject difficultyPanel;
@@ -81,7 +80,7 @@ namespace MasqueradeGame
 
         private void Update()
         {
-            influenceText.text = gameManager.playerInfluence.ToString();
+            scoreText.text = gameManager.Score.ToString();
         }
 
         private void ShowDifficultySelection()
@@ -104,15 +103,13 @@ namespace MasqueradeGame
 
         private void UpdateRoundDisplay(int round)
         {
-            roundText.text = $"Round: {round}/{gameManager.MaxRounds}";
+            roundText.text = $"Round: {round}";
             UpdateAllRoomDisplays();
         }
 
         private void UpdateGameInfoDisplay()
         {
-            influenceText.text = $"Influence: {gameManager.playerInfluence}";
-            targetRoleText.text = $"Target: {gameManager.targetRole}";
-            roundText.text = $"Round: {gameManager.CurrentRound}/{gameManager.MaxRounds}";
+            roundText.text = $"Round: {gameManager.CurrentRound}/{gameManager}";
         }
 
         private void UpdateAllRoomDisplays()

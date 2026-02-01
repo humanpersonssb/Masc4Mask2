@@ -11,7 +11,6 @@ namespace MasqueradeGame
     {
         [Header("Game Settings")]
         public Difficulty currentDifficulty;
-        public int maxRounds = 15;
         public int currentRound = 0;
 
         [Header("Role Configuration")]
@@ -226,7 +225,6 @@ namespace MasqueradeGame
                 }
         
                 //// hii olin
-                Debug.Log($"Turn {currentRound}/{maxRounds} - Characters moved");
             });
         }
 
@@ -422,7 +420,6 @@ namespace MasqueradeGame
 
         public bool IsGameActive => isGameActive;
         public int CurrentRound => currentRound;
-        public int MaxRounds => maxRounds;
         public List<Character> AllCharacters => charactersInPlay;
         
         public List<Character> AllMaskedCharacters => AllCharacters.Where(x => x.currentMask != MaskType.None).ToList();
