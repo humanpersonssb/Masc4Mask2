@@ -114,7 +114,19 @@ namespace MasqueradeGame
             option4Text.text = "Talk";
             dialogueText.text = "How has your evening been going?";
             state = 0;
-            
+
+            //this is the rebellion
+                                dialogueText.text = "Well then, who am I?";
+                    option1Text.text = "You are the Spy!";
+                    option2Text.text = "You are the Guard!";
+                    option3Text.text = "You are the Tailor!";
+                    option4Text.text = "You are the Baron!";
+                    option5Button.gameObject.SetActive(true);
+                    option6Button.gameObject.SetActive(true);
+                    option7Button.gameObject.SetActive(true);
+                    option8Button.gameObject.SetActive(true);
+                    option9Button.gameObject.SetActive(true);
+                    option10Button.gameObject.SetActive(true);
             EnableOptions();
         }
 
@@ -122,7 +134,7 @@ namespace MasqueradeGame
         {
             if (currentCharacter == null)
                 return;
-                
+                /*
             if(state == 0)
             {
                 if(optionNumber > 2)
@@ -207,7 +219,14 @@ namespace MasqueradeGame
                 DisableOptions();
                 ShowContinueButton();
                 state = 0;
-            }
+            }*/
+
+
+
+                    Character character = gameManager.GetTargetCharacter();
+                    int targetInfluence = character.trueRole.influenceValue;
+                    //optionButtons[targetInfluence].gameObject.SetActive(false);
+                    optionButtons[targetInfluence].interactable = false;
         }
 
         private void ShowContinueButton()
