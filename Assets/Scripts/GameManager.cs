@@ -219,6 +219,11 @@ namespace MasqueradeGame
             }
         }
 
+        private void Update()
+        {
+            ClockSupportText.text = $"{4 - (currentRound % 3)} hours left before you MUST guess someone's identity!";
+        }
+
         public void AdvanceTurn()
         {
             CurtainVfx.DoFade(() =>
@@ -247,6 +252,7 @@ namespace MasqueradeGame
             });
         }
 
+        public TextMeshProUGUI ClockSupportText;
         private void UpdateClockHand()
         {
             if (clockHand != null)
@@ -254,6 +260,7 @@ namespace MasqueradeGame
                 float targetRotation = -currentRound * degreesPerRound; // Negative to rotate clockwise
                 clockHand.rotation = Quaternion.Euler(0, 0, targetRotation);
             }
+
         }
 
         private void ForceGuess()
@@ -463,6 +470,23 @@ namespace MasqueradeGame
         public Character GetCharacterByID(int id)
         {
             return charactersInPlay.FirstOrDefault(c => c.characterID == id);
+        }
+
+        public Character GetCharacterByRole(Role role)
+        {
+            foreach (var c in AllCharacters)
+            {
+                if (c.trueRole.roleType == role) return c;
+            }
+
+            return null;
+        }
+
+        public bool IsCharacterGuessed(Role role)
+        {
+            Character cbr = GetCharacterByRole(role);
+            if (cbr == null) return false;
+            return cbr.demasked;
         }
 
         private void InitializeRoomDictionary()

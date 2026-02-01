@@ -17,7 +17,7 @@ MonoBehaviour:
   roleType: 8
   influenceValue: 8
   roleName: Pope
-  description: I've never lied (The pope only lies)
+  description: 'I would NEVER lie ;) (TN: The Pope always lies).'
   hasFixedStartingMask: 0
   fixedMaskType: 0
   hasCustomMovement: 0

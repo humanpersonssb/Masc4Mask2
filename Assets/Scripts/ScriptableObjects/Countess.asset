@@ -17,7 +17,7 @@ MonoBehaviour:
   roleType: 4
   influenceValue: 4
   roleName: Countess
-  description: I go to hidden rules as often as possible
+  description: I go to hidden rooms as often as possible.
   hasFixedStartingMask: 0
   fixedMaskType: 0
   hasCustomMovement: 1

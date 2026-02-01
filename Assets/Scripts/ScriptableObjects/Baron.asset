@@ -17,7 +17,7 @@ MonoBehaviour:
   roleType: 3
   influenceValue: 3
   roleName: Baron
-  description: I avoid one person with at least 5 rank.
+  description: There is one high-ranked person I avoid.
   hasFixedStartingMask: 0
   fixedMaskType: 0
   hasCustomMovement: 1
