@@ -45,6 +45,8 @@ namespace MasqueradeGame
         public int TrueInfluence => trueRole.influenceValue;
         public Role CurrentRole => isUsingCopiedRole ? copiedRole : trueRole.roleType;
 
+        public bool WasInLastSwap = false;
+
         private void Awake()
         {
             RolesIveContacted = new();
@@ -166,6 +168,9 @@ public void Initialize(RoleData role, MaskVisuals maskVisuals, Room startingRoom
             other.maskIcon = tempS;
             UpdateVisuals();
             other.UpdateVisuals();
+
+            WasInLastSwap = true;
+            other.WasInLastSwap = true;
         }
 
         public void CopyTraits(Character other)

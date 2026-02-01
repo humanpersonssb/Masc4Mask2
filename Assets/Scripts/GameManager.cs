@@ -410,5 +410,7 @@ namespace MasqueradeGame
         public int CurrentRound => currentRound;
         public int MaxRounds => maxRounds;
         public List<Character> AllCharacters => charactersInPlay;
+        
+        public List<Character> AllUnmaskedCharacters => AllCharacters.Where(x => x.currentMask != MaskType.None).ToList();
     }
 }

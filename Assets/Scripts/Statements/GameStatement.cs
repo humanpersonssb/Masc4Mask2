@@ -1,6 +1,8 @@
+using System;
 using UnityEngine;
 using System.Collections.Generic;
 using System.Linq;
+using Random = UnityEngine.Random;
 
 namespace MasqueradeGame
 {
@@ -595,6 +597,75 @@ namespace MasqueradeGame
         public override GameStatement GenerateStatement(GameManager game, Character speaker, bool isTrue)
         {
             return new($"(This person doesn't want to be your friend... their reputation is too far from yours.)" , -1);
+        }
+    }
+
+    public class SG_SumOfRanks : StatementGenerator
+    {
+        public override bool CanUse(GameManager game, Character speaker)
+        {
+            return false;
+        }
+
+        public override GameStatement GenerateStatement(GameManager game, Character speaker, bool isTrue)
+        {
+            int myRank = speaker.TrueInfluence;
+            List<Character> twoOthers = game.AllUnmaskedCharacters.OrderBy(_ => Guid.NewGuid()).Take(2).ToList();
+            int sumRank = twoOthers.Sum(x => x.TrueInfluence);
+            int total = sumRank + myRank;
+            if (!isTrue)
+            {
+                float rng = Random.value;
+                if (rng < 0.5f)
+                {
+                    total += Random.Range(1, 6);
+                }
+                else
+                {
+                    total -= Random.Range(1, 6);
+                }
+            }
+            return new($"The sum of my rank, {twoOthers[0].currentMask}'s rank, and {twoOthers[1].currentMask}'s rank is {total}.");
+        }
+    }
+
+    public class SG_IsRoyalty : StatementGenerator
+    {
+        public override bool CanUse(GameManager game, Character speaker)
+        {
+            return false;
+        }
+
+        public override GameStatement GenerateStatement(GameManager game, Character speaker, bool isTrue)
+        {
+            bool sayYes = isTrue == (speaker.TrueInfluence >= 5);
+            if (sayYes)
+            {
+                return new("Yes, I am royalty (my rank is 5 or above).");
+            }
+
+            return new("No, I am not royalty (my rank is lower than 5).");
+        }
+    }
+
+    public class SG_WasInLastSwap : StatementGenerator
+    {
+        public override bool CanUse(GameManager game, Character speaker)
+        {
+            return false;
+        }
+
+        public override GameStatement GenerateStatement(GameManager game, Character speaker, bool isTrue)
+        {
+            bool sayYes = isTrue == speaker.WasInLastSwap;
+            if (sayYes)
+            {
+                return new($"Yes, I was in the last mask swap.");
+            }
+            else
+            {
+                return new($"No, I was not in the last mask swap.");
+            }
         }
     }
 }

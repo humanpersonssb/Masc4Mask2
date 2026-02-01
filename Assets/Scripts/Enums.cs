@@ -20,6 +20,7 @@ namespace MasqueradeGame
 
     public enum MaskType
     {
+        None,
         Peacock,
         Rabbit,
         Porcupine,
