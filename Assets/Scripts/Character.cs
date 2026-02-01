@@ -2,10 +2,12 @@ using UnityEngine;
 using UnityEngine.UI;
 using System;
 using System.Collections.Generic;
+using TMPro;
+using UnityEngine.EventSystems;
 
 namespace MasqueradeGame
 {
-    public class Character : MonoBehaviour
+    public class Character : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     {
         [Header("Identity")]
         public int characterID;
@@ -50,6 +52,7 @@ namespace MasqueradeGame
         public bool demasked => currentMask == MaskType.None;
         private void Awake()
         {
+            NameText.gameObject.SetActive(false);
             RolesIveContacted = new();
             Debug.Log($"Character Awake called for {gameObject.name}");
             
@@ -339,6 +342,16 @@ public void Initialize(RoleData role, MaskVisuals maskVisuals, Room startingRoom
             return currentRoom.GetRandomConnection();
         }
 
+        public TextMeshProUGUI NameText;
+        public void OnPointerEnter(PointerEventData eventData)
+        {
+            NameText.gameObject.SetActive(true);
+            NameText.text = GetName();
+        }
 
+        public void OnPointerExit(PointerEventData eventData)
+        {
+            NameText.gameObject.SetActive(false);
+        }
     }
 }
