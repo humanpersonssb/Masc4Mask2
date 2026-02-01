@@ -732,10 +732,10 @@ namespace MasqueradeGame
             bool sayYes = isTrue == (speaker.TrueInfluence >= 5);
             if (sayYes)
             {
-                return new("Please bow, for I am royalty (Influence 5 or above).");
+                return new("Please bow, for I am royalty (My rank is 5 or above).");
             }
 
-            return new("Don't worry, I am not royalty (Influence 4 or lower).");
+            return new("Don't worry, I am not royalty (My rank is 4 or lower).");
         }
     }
 

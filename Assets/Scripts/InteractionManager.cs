@@ -245,6 +245,7 @@ namespace MasqueradeGame
         {
             HideContinueButton();
             CompleteInteraction();
+            AudioManager.Instance.audioPlayer.PlayOneShot(AudioManager.Instance.endGame);
         }
 
         private string GetPlaceholderResponse(int option)

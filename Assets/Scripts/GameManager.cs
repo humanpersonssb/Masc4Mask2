@@ -221,7 +221,7 @@ namespace MasqueradeGame
 
         private void Update()
         {
-            ClockSupportText.text = $"{4 - (currentRound % 3)} hours left before you MUST guess someone's identity!";
+            ClockSupportText.text = $"{3 - (currentRound % 3)} hours left before you MUST guess someone's identity!";
         }
 
         public void AdvanceTurn()
