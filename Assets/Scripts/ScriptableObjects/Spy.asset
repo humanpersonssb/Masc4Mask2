@@ -17,7 +17,7 @@ MonoBehaviour:
   roleType: 0
   influenceValue: 0
   roleName: Spy
-  description: I copy the ability of the last person I saw.
+  description: I copy the ability of the last person I saw (but not their rank).
   hasFixedStartingMask: 0
   fixedMaskType: 0
   hasCustomMovement: 1
