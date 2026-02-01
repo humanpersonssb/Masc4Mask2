@@ -30,7 +30,7 @@ namespace MasqueradeGame.UI
 
         public GameStatement Generate(GameManager game, Character speaker)
         {
-            return Generator.GenerateStatement(game, speaker, speaker.CurrentRole == Role.Pope);
+            return Generator.GenerateStatement(game, speaker, speaker.CurrentRole != Role.Pope);
         }
 
         private void Update()

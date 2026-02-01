@@ -76,7 +76,7 @@ namespace MasqueradeGame
             {
                 int range = Random.Range(_rangeMin, _rangeMax);
                 min = Random.Range(0, MAX_INFLUENCE - range + 2);
-                max = min + range;
+                max = Math.Min(9, min + range);
                 if(isTrue == IsInRange(myInfluence, min, max)) // true and in range, or false and not in range
                 {
                     break;
