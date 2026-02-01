@@ -142,8 +142,18 @@ namespace MasqueradeGame
             {
                 rolesNotInPlay.Add(shuffledRoles[i]);
             }
-
-            targetRole = rolesInPlay[UnityEngine.Random.Range(0, rolesInPlay.Count)].roleType;
+            
+            List<RoleData> eligibleTargets = rolesInPlay.Where(r => r.influenceValue >= 5).ToList();
+            
+            if (eligibleTargets.Count > 0)
+            {
+                targetRole = eligibleTargets[UnityEngine.Random.Range(0, eligibleTargets.Count)].roleType;
+            }
+            else
+            {
+                Debug.LogWarning("No roles with influence >= 5 found, picking random target");
+                targetRole = rolesInPlay[UnityEngine.Random.Range(0, rolesInPlay.Count)].roleType;
+            }
         }
 
         private void SetupCharacters()
@@ -266,13 +276,27 @@ namespace MasqueradeGame
 
         private void MoveAllCharacters()
         {
+            Dictionary<Character, Room> nextRoomIntentions = new();
             foreach (Character character in charactersInPlay)
             {
                 Room nextRoom = character.GetNextRoom(targetRole);
                 if (nextRoom != null)
                 {
-                    character.MoveToRoom(nextRoom);
+                    nextRoomIntentions[character] = nextRoom;
+                    //character.MoveToRoom(nextRoom);
                 }
+            }
+
+            if(nextRoomIntentions.Values.All(x => x.isBlindSpot))
+            {
+                var charList = nextRoomIntentions.Keys.ToList();
+                Character randomChar = charList[UnityEngine.Random.Range(0, charList.Count)];
+                nextRoomIntentions[randomChar] = ballroom;
+            }
+
+            foreach((Character c, Room r) in nextRoomIntentions)
+            {
+                c.MoveToRoom(r);
             }
         }
 
