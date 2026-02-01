@@ -54,8 +54,8 @@ namespace MasqueradeGame
             
             if (characterButton == null)
             {
-                Debug.LogError($"Character {gameObject.name} has no Button assigned! Trying to find one...");
                 characterButton = GetComponent<Button>();
+                Debug.LogError($"Character {gameObject.name} has no Button assigned!");
             }
             
             if (characterButton != null)
@@ -97,13 +97,22 @@ namespace MasqueradeGame
             }
         }
 
+        public string GetName()
+        {
+            if (currentMask == MaskType.None)
+            {
+                return trueRole.roleType.ToString();
+            }
+            return currentMask.ToString();
+        }
+
         public Sprite GetCharacterSprite()
         {
             if (currentMask == MaskType.None)
             {
                 return trueRole.sprite;
             }
-            return maskIcon;
+            return silhouetteSprite;
         }
 
         public void OnClicked()

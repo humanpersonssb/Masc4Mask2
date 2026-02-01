@@ -59,7 +59,7 @@ namespace MasqueradeGame
 
         public readonly HashSet<Role> AllRoles = new()
         {
-            Role.Spy, Role.Guard, Role.Tailor, Role.Baron, Role.Countess, Role.Prince, Role.PrimeMinister, 
+            Role.Spy, Role.Guard, Role.Tailor, Role.Baron, Role.Countess, Role.Prince, Role.Duke, 
             Role.Princess, Role.Pope, Role.King
         };
 

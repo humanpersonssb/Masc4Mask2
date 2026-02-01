@@ -189,7 +189,7 @@ namespace MasqueradeGame
 
         public override bool CanUse(GameManager game, Character speaker)
         {
-            return LearnedRoles.Count < 2;
+            return LearnedRoles.Count < 3;
         }
         
         public override string GetOptionText()
@@ -683,7 +683,7 @@ namespace MasqueradeGame
     {
         public override bool CanUse(GameManager game, Character speaker)
         {
-            return false;
+            return game.AllMaskedCharacters.Count >= 3;
         }
 
         public override string GetOptionText()
@@ -717,7 +717,7 @@ namespace MasqueradeGame
     {
         public override bool CanUse(GameManager game, Character speaker)
         {
-            return false;
+            return true;
         }
         
         public override string GetOptionText()
@@ -742,7 +742,7 @@ namespace MasqueradeGame
     {
         public override bool CanUse(GameManager game, Character speaker)
         {
-            return false;
+            return game.currentRound >= 4;
         }
         
         public override string GetOptionText()

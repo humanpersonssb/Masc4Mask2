@@ -12,7 +12,7 @@ namespace MasqueradeGame
         Baron = 3,
         Countess = 4,
         Prince = 5,
-        PrimeMinister = 6,
+        Duke = 6,
         Princess = 7,
         Pope = 8,
         King = 9
@@ -20,7 +20,6 @@ namespace MasqueradeGame
 
     public enum MaskType
     {
-        None,
         Peacock,
         Rabbit,
         Porcupine,
@@ -28,7 +27,8 @@ namespace MasqueradeGame
         Mouse,
         Deer,
         Fox,
-        Wolf
+        Wolf,
+        None
     }          
 
     public enum RoomType

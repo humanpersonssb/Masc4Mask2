@@ -13,6 +13,7 @@ namespace MasqueradeGame.UI
 
         public void Open(List<Character> characters, Action<Character> onClick)
         {
+            _graphicsRoot.gameObject.SetActive(true);
             foreach (Transform t in _gridLayout.transform)
             {
                 Destroy(t.gameObject);

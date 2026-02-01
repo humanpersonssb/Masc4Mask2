@@ -17,6 +17,7 @@ namespace MasqueradeGame
         public RectTransform GraphicsRoot;
         [FormerlySerializedAs("SilhouetteImage")] public Image FullBodyImage;
         public TextMeshProUGUI SpeakerText;
+        public TextMeshProUGUI SpeakerName;
         public Button ContinueButton;
         public GameStatementGeneratorManager StatementGeneratorManager;
         public VerticalLayoutGroup OptionsRoot;
@@ -40,16 +41,23 @@ namespace MasqueradeGame
         private void OnEnable()
         {
             GameManager.OnCharacterSelected += HandleSelectCharacter;
+            GameManager.OnCharacterSelectedForGuessing += HandleSelectCharacterGuessing;
         }
         
         private void OnDisable()
         {
             GameManager.OnCharacterSelected -= HandleSelectCharacter;
+            GameManager.OnCharacterSelectedForGuessing -= HandleSelectCharacterGuessing;
         }
 
         private void HandleSelectCharacter(Character character)
         {
             Open(character);
+        }
+        
+        private void HandleSelectCharacterGuessing(Character character)
+        {
+            OpenForGuessing(character);
         }
 
         public void Open(Character character)
@@ -78,7 +86,9 @@ namespace MasqueradeGame
 
         private void Update()
         {
+            if (ActiveCharacter == null) return;
             FullBodyImage.sprite = ActiveCharacter.GetCharacterSprite();
+            SpeakerName.text = ActiveCharacter.GetName();
         }
 
         public void PopulateOptions()
@@ -88,7 +98,11 @@ namespace MasqueradeGame
                 Destroy(existing.gameObject);
             }
             
-            var options = StatementGeneratorManager.ManualOptions.OrderBy(_ => Guid.NewGuid()).Take(OptionCount);
+            var options = StatementGeneratorManager
+                .ManualOptions
+                .Where(x => x.CanUse(GameManager, ActiveCharacter))
+                .OrderBy(_ => Guid.NewGuid())
+                .Take(OptionCount);
             foreach (var option in options)
             {
                 var optionInstance = Instantiate(OptionPrefab, OptionsRoot.transform);
