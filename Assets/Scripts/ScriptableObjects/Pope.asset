@@ -12,10 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9693cd654b711884e82053f33dee3bf0, type: 3}
   m_Name: Pope
   m_EditorClassIdentifier: Assembly-CSharp::MasqueradeGame.RoleData
+  sprite: {fileID: 21300000, guid: 2d88594be74640e4084a6a68d4b6c6d8, type: 3}
   roleType: 8
   influenceValue: 8
   roleName: Pope
-  description: 
+  description: I've never lied (The pope only lies)
   hasFixedStartingMask: 0
   fixedMaskType: 0
   hasCustomMovement: 0

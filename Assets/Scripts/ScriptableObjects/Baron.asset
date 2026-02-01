@@ -12,10 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9693cd654b711884e82053f33dee3bf0, type: 3}
   m_Name: Baron
   m_EditorClassIdentifier: Assembly-CSharp::MasqueradeGame.RoleData
+  sprite: {fileID: 21300000, guid: 78e2421868e4ac54aa7a91a9ce01d083, type: 3}
   roleType: 3
   influenceValue: 3
   roleName: Baron
-  description: 
+  description: I avoid one person with at least 5 rank.
   hasFixedStartingMask: 0
   fixedMaskType: 0
   hasCustomMovement: 1

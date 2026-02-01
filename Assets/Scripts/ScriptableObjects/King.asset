@@ -12,10 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9693cd654b711884e82053f33dee3bf0, type: 3}
   m_Name: King
   m_EditorClassIdentifier: Assembly-CSharp::MasqueradeGame.RoleData
+  sprite: {fileID: 21300000, guid: a7aab47db4e25c745817ed04473d6e3d, type: 3}
   roleType: 9
   influenceValue: 9
   roleName: King
-  description: 
+  description: I do as I please
   hasFixedStartingMask: 0
   fixedMaskType: 0
   hasCustomMovement: 0
