@@ -13272,8 +13272,8 @@ MonoBehaviour:
   eventText: {fileID: 1026732729}
   eventContinueButton: {fileID: 1934160516}
   ScreenFader: {fileID: 1102566612}
-  CharactersPanel: {fileID: 235428890}
-  LoseGraphicsRoot: {fileID: 100453163}
+  CharactersPanel: {fileID: 0}
+  LoseGraphicsRoot: {fileID: 0}
 --- !u!1001 &3280046696738255094
 PrefabInstance:
   m_ObjectHideFlags: 0
